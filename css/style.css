@@ -3,6 +3,28 @@
     padding: 0;
 }
 
+body {
+    height: 100vh;
+}
+
 #sketchpad {
     background: green;
+    display: block; /**/
+}
+
+div.action {
+    position: fixed;
+    top: 5px;
+    left: calc(70% - 5px);
+}
+
+div.action.x #eraser {
+    display: none;
+}
+
+div.action.x #brush {
+    display: inline-block;
+}
+div.action #brush {
+    display: none;
 }

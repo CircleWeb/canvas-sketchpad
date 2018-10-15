@@ -9,32 +9,99 @@
 </head>
 <body>
     <canvas id="sketchpad" width="500" height="500"></canvas>
-    
+    <div id="toolDiv" class="action">
+        <button id="eraser">橡皮擦</button>
+        <button id="brush">画笔</button>
+    </div>
+
     <script>
         var canvas = document.getElementById('sketchpad')
         var context = canvas.getContext('2d')
-        // 只支持“矩形”这种图形的原生绘制，所有其他图形的绘制都至少需要生成一条路径
-        // 填充，调用参数(x, y, width, height)
-        context.fillStyle = 'red'
-        context.fillRect(10, 10, 100, 100)
-        // 清除 <=>橡皮擦
-        context.clearRect(50, 50, 20, 20)
-        // stroke 描边
-        context.strokeStyle = 'yellow'
-        context.strokeRect(20, 20, 200, 100)
 
-        // 三角形
-        context.beginPath()
-        context.moveTo(300, 300) // 必须设置画笔起点
-        context.lineTo(500, 300) // 画线
-        context.lineTo(400, 500)
-        // context.closePath()
-        // context.stroke()
-        context.fill()
+        setCanvasSize()
+        
+        window.onresize = function() {
+            setCanvasSize()
+        }
 
-        // 圆形
+        function setCanvasSize() {
+            var width = document.documentElement.clientWidth;
+            var height = document.documentElement.clientHeight;
+            canvas.width = width
+            canvas.height = height
+            console.log('xxx', width, height);
+            var width = document.documentElement.clientWidth;
+            var height = document.documentElement.clientHeight;
+            canvas.width = width
+            canvas.height = height
+        }
+        
+        var painting = false;
+        var erasering = false;
+        var lastPointer = {'x': undefined, 'y': undefined }
+        
+        canvas.onmousedown = function(a) {
+            painting = true;
+            var x = a.clientX;
+            var y = a.clientY;
+            lastPointer = { x: x, y: y }
 
-        // 曲线
+            if(erasering) {
+                context.clearRect(x-5, y-5, 10, 10)
+            }else {
+                drawCircle(x, y)
+            }
+        }
+
+        canvas.onmousemove = function(a) {
+            if(painting) {
+                var x = a.clientX;
+                var y = a.clientY;
+                var newPointer = { x: x, y: y }
+                
+                if(erasering) {
+                    context.clearRect(x-5, y-5, 10, 10)
+                }else {
+                    
+                    drawCircle(x, y)
+                    drawLine(lastPointer, newPointer)
+
+                }
+
+                lastPointer = newPointer
+            }
+        }
+        
+        document.onmouseup = function() {
+            painting = false
+        }
+
+        eraser.onclick = function(e) {
+            erasering = true
+            toolDiv.className = 'action x'
+        }
+
+        brush.onclick = function() {
+            erasering = false
+            toolDiv.className = 'action'
+        }
+
+        function drawCircle(x, y) {
+            context.beginPath()
+            context.arc(x, y, 3, 0, Math.PI*2)
+            context.fillStyle = 'red'
+            context.fill()
+        }
+        
+        function drawLine(lastPointer, newPointer) {
+            context.beginPath()
+            context.moveTo(lastPointer.x, lastPointer.y)
+            context.lineTo(newPointer.x, newPointer.y)
+            context.lineWidth = 6
+            context.strokeStyle = 'red'
+            context.stroke()
+            context.closePath()
+        }
     </script>
 </body>
 </html>
