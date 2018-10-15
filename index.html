@@ -16,66 +16,14 @@
 
     <script>
         var canvas = document.getElementById('sketchpad')
-        var context = canvas.getContext('2d')
+        var context = canvas.getContext('2d')            
 
-        setCanvasSize()
-        
-        window.onresize = function() {
-            setCanvasSize()
-        }
+        autoSetCanvasSize(canvas)
 
-        function setCanvasSize() {
-            var width = document.documentElement.clientWidth;
-            var height = document.documentElement.clientHeight;
-            canvas.width = width
-            canvas.height = height
-            console.log('xxx', width, height);
-            var width = document.documentElement.clientWidth;
-            var height = document.documentElement.clientHeight;
-            canvas.width = width
-            canvas.height = height
-        }
-        
-        var painting = false;
+        listenToMouse(canvas)
+
+        /* 切换画笔、橡皮擦 */
         var erasering = false;
-        var lastPointer = {'x': undefined, 'y': undefined }
-        
-        canvas.onmousedown = function(a) {
-            painting = true;
-            var x = a.clientX;
-            var y = a.clientY;
-            lastPointer = { x: x, y: y }
-
-            if(erasering) {
-                context.clearRect(x-5, y-5, 10, 10)
-            }else {
-                drawCircle(x, y)
-            }
-        }
-
-        canvas.onmousemove = function(a) {
-            if(painting) {
-                var x = a.clientX;
-                var y = a.clientY;
-                var newPointer = { x: x, y: y }
-                
-                if(erasering) {
-                    context.clearRect(x-5, y-5, 10, 10)
-                }else {
-                    
-                    drawCircle(x, y)
-                    drawLine(lastPointer, newPointer)
-
-                }
-
-                lastPointer = newPointer
-            }
-        }
-        
-        document.onmouseup = function() {
-            painting = false
-        }
-
         eraser.onclick = function(e) {
             erasering = true
             toolDiv.className = 'action x'
@@ -101,6 +49,68 @@
             context.strokeStyle = 'red'
             context.stroke()
             context.closePath()
+        }
+
+        function autoSetCanvasSize(canvas) {
+
+            setCanvasSize()
+            
+            window.onresize = function() {
+                setCanvasSize()
+            }
+
+            function setCanvasSize() {
+                var pWidth = document.documentElement.clientWidth;
+                var pHeight = document.documentElement.clientHeight;
+                canvas.width = pWidth
+                canvas.height = pHeight
+                
+                pWidth = document.documentElement.clientWidth;
+                pHeight = document.documentElement.clientHeight;
+                canvas.width = pWidth
+                canvas.height = pHeight
+            }
+        }
+
+        function listenToMouse(canvas) {
+            var painting = false;
+            var lastPointer = {'x': undefined, 'y': undefined }
+            
+            canvas.onmousedown = function(a) {
+                painting = true;
+                var x = a.clientX;
+                var y = a.clientY;
+                lastPointer = { x: x, y: y }
+
+                if(erasering) {
+                    context.clearRect(x-5, y-5, 10, 10)
+                }else {
+                    drawCircle(x, y)
+                }
+            }
+
+            canvas.onmousemove = function(a) {
+                if(painting) {
+                    var x = a.clientX;
+                    var y = a.clientY;
+                    var newPointer = { x: x, y: y }
+                    
+                    if(erasering) {
+                        context.clearRect(x-5, y-5, 10, 10)
+                    }else {
+                        
+                        drawCircle(x, y)
+                        drawLine(lastPointer, newPointer)
+
+                    }
+
+                    lastPointer = newPointer
+                }
+            }
+            
+            document.onmouseup = function() {
+                painting = false
+            }
         }
     </script>
 </body>
