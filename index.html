@@ -13,7 +13,8 @@
     <script>
         var canvas = document.getElementById('sketchpad')
         var context = canvas.getContext('2d')
-        // 填充
+        // 只支持“矩形”这种图形的原生绘制，所有其他图形的绘制都至少需要生成一条路径
+        // 填充，调用参数(x, y, width, height)
         context.fillStyle = 'red'
         context.fillRect(10, 10, 100, 100)
         // 清除 <=>橡皮擦
@@ -21,6 +22,19 @@
         // stroke 描边
         context.strokeStyle = 'yellow'
         context.strokeRect(20, 20, 200, 100)
+
+        // 三角形
+        context.beginPath()
+        context.moveTo(300, 300) // 必须设置画笔起点
+        context.lineTo(500, 300) // 画线
+        context.lineTo(400, 500)
+        // context.closePath()
+        // context.stroke()
+        context.fill()
+
+        // 圆形
+
+        // 曲线
     </script>
 </body>
 </html>
