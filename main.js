@@ -9,12 +9,51 @@ listenToUser(canvas)
 var eraserEnabled = false;
 eraser.onclick = function (e) {
     eraserEnabled = true
-    toolDiv.className = 'action x'
+    eraser.classList.add('active')
+    pen.classList.remove('active')
 }
 
-brush.onclick = function () {
+pen.onclick = function () {
     eraserEnabled = false
-    toolDiv.className = 'action'
+    pen.classList.add('active')
+    eraser.classList.remove('active')
+}
+
+/* 画笔颜色 */
+black.onclick = function(bbb) {
+    context.fillStyle = bbb.target.id
+    context.strokeStyle = bbb.target.id
+    bbb.target.classList.add('active')
+    red.classList.remove('active')
+    blue.classList.remove('active')
+    yellow.classList.remove('active')
+}
+
+red.onclick = function(bbb) {
+    context.fillStyle = bbb.target.id
+    context.strokeStyle = bbb.target.id
+    bbb.target.classList.add('active')
+    black.classList.remove('active')
+    blue.classList.remove('active')
+    yellow.classList.remove('active')
+}
+
+blue.onclick = function(bbb) {
+    context.fillStyle = bbb.target.id
+    context.strokeStyle = bbb.target.id
+    bbb.target.classList.add('active')
+    black.classList.remove('active')
+    red.classList.remove('active')
+    yellow.classList.remove('active')
+}
+
+yellow.onclick = function(bbb) {
+    context.fillStyle = bbb.target.id
+    context.strokeStyle = bbb.target.id
+    bbb.target.classList.add('active')
+    black.classList.remove('active')
+    red.classList.remove('active')
+    blue.classList.remove('active')
 }
 
 function drawCircle(x, y) {
@@ -101,7 +140,6 @@ function listenToUser(canvas) {
 
         canvas.ontouchend = function (a) {
             painting = false
-            console.log('摸完了')
         }
     } else {
 

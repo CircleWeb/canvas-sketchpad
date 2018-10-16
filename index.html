@@ -4,15 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>canvas画板</title>
+    <title>我的画板</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+
     <canvas id="sketchpad" width="500" height="500"></canvas>
     <div id="toolDiv" class="action">
-        <button id="eraser">橡皮擦</button>
-        <button id="brush">画笔</button>
+        <svg id="pen" class="icon active" aria-hidden="true">
+            <use xlink:href="#icon-pen"></use>
+        </svg>
+        <svg id="eraser" class="icon" aria-hidden="true">
+            <use xlink:href="#icon-eraser1"></use>
+        </svg>
     </div>
+    <ol class="colors">
+        <li id="black" class="black active"></li>
+        <li id="red" class="red"></li>
+        <li id="blue" class="blue"></li>
+        <li id="yellow" class="yellow"></li>
+    </ol>
+    
+    <script src="//at.alicdn.com/t/font_874759_du0tyindj4.js"></script>
     <script src="./main.js"></script>
+
 </body>
 </html>

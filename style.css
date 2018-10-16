@@ -1,30 +1,71 @@
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
 * {
     margin: 0;
     padding: 0;
 }
 
-body {
+body {}
 
+ol {
+    list-style: none;
 }
 
 #sketchpad {
-    background: green;
-    display: block; /**/
+    display: block;
+    /**/
 }
 
 div.action {
     position: fixed;
-    top: 5px;
-    left: calc(70% - 5px);
+    top: 20px;
+    left: 24px;
 }
 
-div.action.x #eraser {
-    display: none;
+div.action svg {
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0 10px;
+    transition: all 0.3s;    
 }
 
-div.action.x #brush {
-    display: inline-block;
+div.action svg.active,
+.colors > li.active {
+    transform: scale(1.2);    
 }
-div.action #brush {
-    display: none;
+
+.colors {
+    position: fixed;
+    left: 30px;
+    top: 60px;
+}
+
+.colors > li {
+    width: 25px;
+    height: 25px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    margin: 10px 0;
+}
+
+.colors > li.black {
+    background: black;
+}
+
+.colors > li.red {
+    background: red;
+}
+
+.colors > li.blue {
+    background: blue;
+}
+
+.colors > li.yellow {
+    background: yellow;
 }
