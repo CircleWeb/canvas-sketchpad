@@ -46,6 +46,16 @@ div.action svg.active,
     top: 60px;
 }
 
+.sizes {
+    position: fixed;
+    left: -22px;
+    top: 265px;
+}
+
+.sizes input {
+    transform: rotate(90deg)
+}
+
 .colors > li {
     width: 25px;
     height: 25px;

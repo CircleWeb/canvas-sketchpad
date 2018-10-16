@@ -10,6 +10,7 @@
 <body>
 
     <canvas id="sketchpad" width="500" height="500"></canvas>
+    
     <div id="toolDiv" class="action">
         <svg id="pen" class="icon active" aria-hidden="true">
             <use xlink:href="#icon-pen"></use>
@@ -18,12 +19,30 @@
             <use xlink:href="#icon-eraser1"></use>
         </svg>
     </div>
+
     <ol class="colors">
         <li id="black" class="black active"></li>
         <li id="red" class="red"></li>
         <li id="blue" class="blue"></li>
         <li id="yellow" class="yellow"></li>
     </ol>
+
+    <div class="sizes">
+        <input type="range" id="penSize" value="6" min="4" max="30" step="2" list="tickmarks">
+        <datalist id="tickmarks">
+            <option value="6" label="6px">
+            <option value="8" label="6px">
+            <option value="10" label="10px">
+            <option value="12" label="12px">
+            <option value="14" label="14px">
+            <option value="16" label="16px">
+            <option value="18" label="18px">
+            <option value="20" label="20px">
+            <option value="24" label="24px">
+            <option value="28" label="28px">
+            <option value="30" label="30px">
+        </datalist>
+    </div>
     
     <script src="//at.alicdn.com/t/font_874759_du0tyindj4.js"></script>
     <script src="./main.js"></script>

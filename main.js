@@ -1,5 +1,6 @@
 var canvas = document.getElementById('sketchpad')
 var context = canvas.getContext('2d')
+var lineWidth = penSize.value;
 
 autoSetCanvasSize(canvas)
 
@@ -56,9 +57,14 @@ yellow.onclick = function(bbb) {
     blue.classList.remove('active')
 }
 
+penSize.onchange = function(e) {
+    console.log('size changed')
+    lineWidth = e.target.value
+}
+
 function drawCircle(x, y) {
     context.beginPath()
-    context.arc(x, y, 3, 0, Math.PI * 2)
+    context.arc(x, y, lineWidth / 2, 0, Math.PI * 2)
     context.fill()
 }
 
@@ -66,7 +72,7 @@ function drawLine(lastPointer, newPointer) {
     context.beginPath()
     context.moveTo(lastPointer.x, lastPointer.y)
     context.lineTo(newPointer.x, newPointer.y)
-    context.lineWidth = 6
+    context.lineWidth = lineWidth
     context.stroke()
     context.closePath()
 }
