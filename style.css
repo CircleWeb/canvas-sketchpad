@@ -32,18 +32,42 @@ div.action svg {
     width: 1.5em;
     height: 1.5em;
     margin: 0 10px;
-    transition: all 0.3s;    
+    transition: all 0.3s;
 }
 
 div.action svg.active,
-.colors > li.active {
-    transform: scale(1.2);    
+.colors>li.active {
+    transform: scale(1.2);
 }
 
 .colors {
     position: fixed;
     left: 30px;
     top: 60px;
+}
+
+.colors>li {
+    width: 25px;
+    height: 25px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    margin: 10px 0;
+}
+
+.colors>li.black {
+    background: black;
+}
+
+.colors>li.red {
+    background: red;
+}
+
+.colors>li.blue {
+    background: blue;
+}
+
+.colors>li.yellow {
+    background: yellow;
 }
 
 .sizes {
@@ -56,26 +80,39 @@ div.action svg.active,
     transform: rotate(90deg)
 }
 
-.colors > li {
-    width: 25px;
-    height: 25px;
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+input[type=range]::-webkit-slider-thumb {
+    width: 1.5em;
+    height: 1.5em;
     border-radius: 50%;
-    margin: 10px 0;
+    border: 0;
+    background-color: #5cdf84;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.21);
+    -webkit-transition: border-color 0.15s, background-color 0.15s;
+    transition: border-color 0.15s, background-color 0.15s;
+    cursor: pointer;
+    background-clip: padding-box;
+    box-sizing: border-box;
 }
 
-.colors > li.black {
-    background: black;
+input[type=range] {
+    width: 100%;
+    height: 8px;
+    border-radius: 8px;
+    margin: .8em 0;
+    padding: 0;
+    cursor: pointer;
+    border: 0;
+    background: -webkit-linear-gradient(#051108, #40c35f) no-repeat #cccccc;
+    background-size: 0% 100%;
 }
 
-.colors > li.red {
-    background: red;
+/*Real Range*/
+input[type=range] {
+    position: relative;
+    outline: 0;
+    -webkit-appearance: none !important;
 }
 
-.colors > li.blue {
-    background: blue;
-}
-
-.colors > li.yellow {
-    background: yellow;
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
 }

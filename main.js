@@ -62,6 +62,21 @@ penSize.onchange = function(e) {
     lineWidth = e.target.value
 }
 
+clear.onclick = function() {
+    context.clearRect(0, 0, canvas.width, canvas.height)
+}
+
+download.onclick = function() {
+    var url = canvas.toDataURL("image/png")
+    var a = document.createElement('a')
+    a.href = url
+    a.download = '我的画儿'
+    a.target = '_blank'
+    a.click()
+    // var url = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+    // window.location.href = url
+}
+
 function drawCircle(x, y) {
     context.beginPath()
     context.arc(x, y, lineWidth / 2, 0, Math.PI * 2)

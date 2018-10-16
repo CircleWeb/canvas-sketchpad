@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -7,16 +8,23 @@
     <title>我的画板</title>
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
 
     <canvas id="sketchpad" width="500" height="500"></canvas>
-    
+
     <div id="toolDiv" class="action">
         <svg id="pen" class="icon active" aria-hidden="true">
             <use xlink:href="#icon-pen"></use>
         </svg>
         <svg id="eraser" class="icon" aria-hidden="true">
             <use xlink:href="#icon-eraser1"></use>
+        </svg>
+        <svg id="clear" class="icon" aria-hidden="true">
+            <use xlink:href="#icon-clear3"></use>
+        </svg>
+        <svg id="download" class="icon" aria-hidden="true">
+            <use xlink:href="#icon-save"></use>
         </svg>
     </div>
 
@@ -43,9 +51,10 @@
             <option value="30" label="30px">
         </datalist>
     </div>
-    
-    <script src="//at.alicdn.com/t/font_874759_du0tyindj4.js"></script>
+
+    <script src="//at.alicdn.com/t/font_874759_1msr2e65g67.js"></script>
     <script src="./main.js"></script>
 
 </body>
+
 </html>
